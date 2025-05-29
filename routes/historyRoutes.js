@@ -6,7 +6,6 @@ import authMiddleware from '../authMiddleware/authMiddleware.js';
 const router = express.Router();
 dotenv.config();
 
-// Post new message
 router.post('/', async (req, res) => {
     const { userMessage, aiResponse } = req.body;
 
@@ -23,7 +22,6 @@ router.post('/', async (req, res) => {
 })
 
 
-// GET all history
 router.get('/',authMiddleware, async (req, res) => {
     try {
         const messages = await Message.find().sort({ createdAt: -1 });
@@ -33,7 +31,6 @@ router.get('/',authMiddleware, async (req, res) => {
     }
 });
 
-// get message by id
 router.get('/:id', async (req, res) => {
     try {
         const message = await Message.findById(req.params.id);
@@ -44,7 +41,7 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-// Delete a message
+
 router.delete('/:id', async (req, res) => {
     try {
         await Message.findByIdAndDelete(req.params.id);

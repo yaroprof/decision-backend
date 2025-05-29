@@ -1,5 +1,5 @@
 import express from 'express';
-import axios from 'axios'; // нова бібліотека для HTTP запитів
+import axios from 'axios';
 import dotenv from 'dotenv';
 import Message from '../models/Message.js';
 import authMiddleware from '../authMiddleware/authMiddleware.js';
@@ -8,13 +8,9 @@ import authMiddleware from '../authMiddleware/authMiddleware.js';
 const router = express.Router();
 dotenv.config();
 
-// Перевірка наявності ключа
 if (!process.env.GROQ_API_KEY) {
   throw new Error('GROQ_API_KEY is missing in .env');
 }
-
-
-// GET-запит (наприклад, для перевірки статусу API)
 
 router.get("/", async (req, res) => {
   try {
@@ -26,11 +22,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.get('/', (req, res) => {
-//   res.json({ message: 'API is working. Use POST to analyze decisions.' });
-// });
-
-// POST маршрут для аналізу рішень
 router.post('/', authMiddleware, async (req, res) => {
   const { message: userMessage } = req.body;
 
@@ -60,7 +51,6 @@ router.post('/', authMiddleware, async (req, res) => {
 
     const aiResponse = response.data.choices[0].message.content;
 
-    // save in DB
     const newMessage = new Message({ userId: req.userId, userMessage, aiResponse });
     await newMessage.save();
 

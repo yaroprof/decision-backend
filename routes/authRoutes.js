@@ -5,7 +5,6 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
-// Middleware для перевірки JWT_SECRET
 const ensureJwtSecret = (req, res, next) => {
   if (!process.env.JWT_SECRET) {
     return res.status(500).json({ error: 'Server configuration error: JWT_SECRET is missing' });
@@ -13,11 +12,9 @@ const ensureJwtSecret = (req, res, next) => {
   next();
 };
 
-// 🚀 POST /api/auth/register
 router.post('/register', ensureJwtSecret, async (req, res) => {
   const { email, password } = req.body;
 
-  // Базова валідація
   if (!email || !password) {
     return res.status(400).json({ error: 'Email and password are required' });
   }
@@ -44,11 +41,9 @@ router.post('/register', ensureJwtSecret, async (req, res) => {
   }
 });
 
-// 🔐 POST /api/auth/login
 router.post('/login', ensureJwtSecret, async (req, res) => {
   const { email, password } = req.body;
 
-  // Базова валідація
   if (!email || !password) {
     return res.status(400).json({ error: 'Email and password are required' });
   }
