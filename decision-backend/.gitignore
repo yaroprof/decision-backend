@@ -1,0 +1,65 @@
+# Node.js та npm
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn.lock
+package-lock.json
+
+# Змінні середовища
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Firebase конфігурація (якщо використовуєш Firebase)
+firebase.json
+.firestore
+.firebaserc
+
+# Логи та тимчасові файли
+*.log
+logs/
+*.log.*
+*.pid
+*.seed
+*.pid.lock
+
+# Директорії збірки (React)
+build/
+dist/
+
+# Локальні конфігурації редакторів
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Тимчасові файли
+*.tmp
+*.bak
+*.swp
+*~
+
+# Тести та покриття
+coverage/
+*.lcov
+
+# Для бекенду
+# Секрети та ключі (наприклад, для OpenAI чи Firebase)
+*.pem
+*.key
+*.cert
+serviceAccountKey.json
+
+# Інші
+*.cache
+*.out
